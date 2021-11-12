@@ -1,0 +1,47 @@
+# Merge sort
+
+def mergesort(Percentage):
+    if len(Percentage)>1:
+        mid = len(Percentage)//2
+        left = Percentage[:mid]
+        right = Percentage[mid:]
+        mergesort(left)
+        mergesort(right)
+        i = 0
+        j = 0
+        k = 0
+        while i<len(left) and j<len(right):
+            if left[i]<right[j]:
+                Percentage[k] = left[i]
+                i = i+1
+                k = k+1
+            else:
+                Percentage[k] = right[j]
+                j = j+1
+                k = k+1
+        while i<len(left):
+            Percentage[k] = left[i]
+            i = i+1
+            k =k+1
+        while j<len(right):
+            Percentage[k] =right[j]
+            j =j+1
+            k =k+1
+
+Percentage = []
+number = int(input("Enter the Total Number of Students:\n"))
+for i in range(number):
+    value = float(input("Enter the Percentage:\n "))
+    Percentage.append(value)
+mergesort(Percentage)
+print(Percentage) 
+
+
+print("The Top five scores are:",Percentage)
+minimum = len(Percentage)-6
+maximum = len(Percentage)-1
+index = 1
+for i in range(maximum,minimum,-1):
+    if i>=0:
+        print(f"{index} Top Scorer:",Percentage[i],"\n")
+        index+=1
